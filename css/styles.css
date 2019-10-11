@@ -48,6 +48,18 @@ body {
     text-decoration: none;
 }
 
+.building-text {
+    font-family: Google Sans, Noto Sans, sans-serif;
+    font-weight: 500;
+    font-size: 3em;
+    text-align: center;
+    grid-column: 2 / 19;
+    grid-row: 5 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #matter-canvas {
     grid-column: 1/21;
     grid-row: 1/21;
