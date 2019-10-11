@@ -2,17 +2,22 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>DSC Valladolid</title>
     <meta name="description"
         content="Website for Google's Developer Student Club chapter from the University of Valladolid">
     <meta name="author" content='Carlos "Kurolox" Gomez'>
 
+    <!--Fonts-->
+
     <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
     <link rel="stylesheet"
         href="//fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons">
 
-
+    <!--Matter.js (for physics engine)-->
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.min.js"
+        integrity="sha256-Bmvb4pJWin8rqq3GnwPz/hxBtqXaMdZHJnHYlpRULa4=" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="css/normalizer.css">
@@ -35,11 +40,27 @@
             <a class="navlink" href="/html/">HTML</a>
             <a class="navlink" href="/html/">HTML</a>
         </nav>
+
+        <div id="matter-canvas">
+        </div>
     </div>
-    
-    <div class="box" style="background-color: blue">
-        box2
+
+    <div class="box">
+        <ol>
+            <li>Coffee</li>
+            <li>Tea</li>
+            <li>Milk</li>
+        </ol>
+
+        <ul>
+            <li>Coffee</li>
+            <li>Tea</li>
+            <li>Milk</li>
+        </ul>
     </div>
+
+    <script src="js/matter.js"></script>
+
 </body>
 
 </html>
