@@ -17,7 +17,8 @@ let Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies,
     Vertices = Matter.Vertices,
-    Mouse = Matter.Mouse;
+    Mouse = Matter.Mouse,
+    MouseConstraint = Matter.MouseConstraint;
 
 
 // create an engine
@@ -35,6 +36,28 @@ let render = Render.create({
         wireframes: false,
     }
 });
+
+var mouse = Mouse.create(render.canvas),
+mouseConstraint = MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: {
+        stiffness: 0.2,
+        render: {
+            visible: false
+        }
+    }
+});
+
+
+//Allow scrollwheel and right click to work
+mouse.element.removeEventListener("rightclick", mouse.mousewheel);
+mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+World.add(engine.world, mouseConstraint);
+
+// keep the mouse in sync with rendering
+render.mouse = mouse;
 
 //walls
 objects.push(Bodies.rectangle(width / 2, height + 100, width * 1.5, 200, { isStatic: true }));

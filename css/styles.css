@@ -17,6 +17,7 @@ h1 {
     font-family: Google Sans, Noto Sans, sans-serif;
     font-weight: 400;
     width: 100%;
+    font-size: 3em;
     color: #757575;
 }
 
@@ -125,8 +126,11 @@ img {
 
 /* Media rules for responsiveness */
 
-@media(max-width: 1500px){
-    .navbar{
+@media(max-width: 1500px) {
+    .navbar {
         display: none;
+    }
+    .border-logo {
+        grid-column: 4 / 18;
     }
 }
