@@ -37,7 +37,7 @@ let render = Render.create({
     }
 });
 
-var mouse = Mouse.create(render.canvas),
+let mouse = Mouse.create(render.canvas),
 mouseConstraint = MouseConstraint.create(engine, {
     mouse: mouse,
     constraint: {
@@ -48,14 +48,41 @@ mouseConstraint = MouseConstraint.create(engine, {
     }
 });
 
+//Allow scrollwheel to work
 
-//Allow scrollwheel and right click to work
-mouse.element.removeEventListener("rightclick", mouse.mousewheel);
 mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
 mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
+//Allow mobile scrolling
+mouse.element.removeEventListener('touchmove', mouse.mousemove);
+mouse.element.removeEventListener('touchstart', mouse.mousedown);
+mouse.element.removeEventListener('touchend', mouse.mouseup);
+
 World.add(engine.world, mouseConstraint);
 
+updateGravity = function () {
+    if (!engine)
+        return;
+    
+    var orientation = window.orientation,
+        gravity = engine.world.gravity;
+
+    if (orientation === 0) {
+        gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
+        gravity.y = Common.clamp(event.beta, -90, 90) / 90;
+    } else if (orientation === 180) {
+        gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
+        gravity.y = Common.clamp(-event.beta, -90, 90) / 90;
+    } else if (orientation === 90) {
+        gravity.x = Common.clamp(event.beta, -90, 90) / 90;
+        gravity.y = Common.clamp(-event.gamma, -90, 90) / 90;
+    } else if (orientation === -90) {
+        gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
+        gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
+    }
+};
+
+window.addEventListener('deviceorientation', updateGravity, true);
 // keep the mouse in sync with rendering
 render.mouse = mouse;
 
