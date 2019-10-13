@@ -15,7 +15,10 @@ let objects = [];
 let Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
-    Bodies = Matter.Bodies;
+    Bodies = Matter.Bodies,
+    Vertices = Matter.Vertices,
+    Mouse = Matter.Mouse;
+
 
 // create an engine
 let engine = Engine.create();
@@ -36,33 +39,24 @@ let render = Render.create({
 //walls
 objects.push(Bodies.rectangle(width / 2, height + 100, width * 1.5, 200, { isStatic: true }));
 objects.push(Bodies.rectangle(width / 2, -100, width * 1.5, 200, { isStatic: true }));
-
 objects.push(Bodies.rectangle(-100, height / 2, 200, height * 1.5, { isStatic: true }));
 objects.push(Bodies.rectangle(width + 100, height / 2, 200, height * 1.5, { isStatic: true }));
 
 
-for (i = 0; i < 8; i++) {
-    let item_width = Math.floor(Math.random() * max_width) + min_width;
-    let item_height = Math.floor(Math.random() * max_height) + min_height;
-
-    let x = Math.floor(Math.random() * (width - max_width)) + min_width;
-    let y = Math.floor(Math.random() * (height - max_height)) + min_height;
-
-    objects.push(Matter.Bodies.rectangle(x, y, item_width, item_height, {
-        render: { fillStyle: colors[Math.floor(Math.random() * colors.length)] }
-    }));
+for (i = 0; i < randomInt(4, 9); i++) {
+    objects.push(generateSqaure());
 }
 
-for (i = 0; i < 6; i++) {
-    let radius = (Math.floor(Math.random() * max_width) + min_width) / 3;
+for (i = 0; i < randomInt(4, 9); i++) {
+    objects.push(generateRectangle());
+}
 
+for (i = 0; i < randomInt(4, 9); i++) {
+    objects.push(generateCircle());
+}
 
-    let x = Math.floor(Math.random() * (width - max_width)) + min_width;
-    let y = Math.floor(Math.random() * (height - max_height)) + min_height;
-
-    objects.push(Matter.Bodies.circle(x, y, radius, {
-        render: { fillStyle: colors[Math.floor(Math.random() * colors.length)] }
-    }));
+for (i = 0; i < randomInt(4, 9); i++) {
+    objects.push(generateTriangle());
 }
 
 // add all of the bodies to the world
@@ -79,3 +73,83 @@ window.addEventListener("resize", function () {
     render.canvas.width = canvas.offsetWidth;
     render.canvas.height = canvas.offsetHeight;
 });
+
+function randomInt(floor, roof) {
+    // Returns a random int between floor (inclusive) and roof (exclusive)
+    return (Math.floor(Math.random() * roof) + floor);
+}
+
+function randomChoice(list) {
+    // Given a list, returns a random item from said list
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+function generateSqaure() {
+    // Randomize size between min and max values
+    let side = randomInt(min_width, max_width) / 2;
+
+    // Spawn at random coordinate inside the safe boundaries
+    let x = randomInt(min_width, width - max_width);
+    let y = randomInt(min_height, height - max_height);
+
+    return Matter.Bodies.rectangle(x, y, side, side, {
+        render: generateStyle(), frictionStatic: 1
+    });
+}
+
+function generateRectangle() {
+    // Randomize size between min and max values
+    let item_width = randomInt(min_width, max_width);
+    let item_height = randomInt(min_height, max_height);
+
+    // Spawn at random coordinate inside the safe boundaries
+    let x = randomInt(min_width, width - max_width);
+    let y = randomInt(min_height, height - max_height);
+
+    return Matter.Bodies.rectangle(x, y, item_width, item_height, {
+        render: generateStyle(), frictionStatic: 1
+    });
+}
+
+function generateCircle() {
+    // Randomize a reasonably sized radius
+    let radius = randomInt(min_width, max_width) / 3;
+
+    // Spawn at random coordinate inside the safe boundaries
+    let x = randomInt(min_width, width - max_width);
+    let y = randomInt(min_height, height - max_height);
+
+    return Matter.Bodies.circle(x, y, radius, {
+        render: generateStyle(), frictionStatic: 1
+    });
+}
+
+function generateTriangle() {
+    let side = randomInt(min_width, max_width) / 2;
+    let triangle = Vertices.fromPath(`${side / 2} 0, ${side} ${side}, 0 ${side}`);
+
+    // Spawn at random coordinate inside the safe boundaries
+    let x = randomInt(min_width, width - max_width);
+    let y = randomInt(min_height, height - max_height);
+
+
+
+    return Bodies.fromVertices(x, y, triangle, {
+        render: generateStyle(), frictionStatic: 1
+    })
+}
+
+function generateStyle() {
+    // Randomly chooses the color and if the item is solid or not
+
+    let render = {};
+    if (Math.random() > -1) { //TODO: Change back to .5 after border debugging
+        render.fillStyle = randomChoice(colors);
+        return render;
+    }
+
+    render.fillStyle = "transparent";
+    render.strokeStyle = randomChoice(colors);
+    render.lineWidth = randomInt(8, 13);
+    return render;
+}
