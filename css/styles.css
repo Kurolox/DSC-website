@@ -16,15 +16,19 @@ body {
 h1 {
     font-family: Google Sans, Noto Sans, sans-serif;
     font-weight: 400;
+    width: 100%;
     color: #757575;
-    font-size: 4em;
 }
 
 p {
     font-family: Roboto, Noto Sans, sans-serif;
     font-weight: 400;
     color: #757575;
-    font-size: 1.5em;
+}
+
+img {
+    min-width: 0;
+    object-fit: contain;
 }
 
 .box {
@@ -74,7 +78,7 @@ p {
 .building-text {
     font-family: Google Sans, Noto Sans, sans-serif;
     font-weight: 500;
-    font-size: 100%;
+    font-size: 3vw;
     text-align: center;
     grid-column: 2 / 20;
     grid-row: 5 / 16;
@@ -117,4 +121,12 @@ p {
 
 .yellow {
     color: #F4B400;
+}
+
+/* Media rules for responsiveness */
+
+@media(max-width: 1500px){
+    .navbar{
+        display: none;
+    }
 }
