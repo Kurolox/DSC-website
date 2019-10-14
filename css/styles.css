@@ -57,7 +57,12 @@ img {
 
 .main {
     height: 100vh;
-    height: -webkit-fill-available;
+    @supports (-webkit-appearance: none) {
+        /*Fix for Chrome for Android navbar 100vh issue*/
+        .os-android & {
+            min-height: calc(100vh - 56px);
+        }
+    }
     width: 100%;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
@@ -164,15 +169,13 @@ img {
     h1 {
         text-align: center;
     }
-
     .box {
         grid-template-columns: 3vw 1fr 3vw;
     }
 }
 
-
 @media screen and (max-width: 700px) {
-    .main-text{
+    .main-text {
         flex-direction: column;
         font-size: 10vw;
     }
