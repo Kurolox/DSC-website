@@ -57,6 +57,7 @@ img {
 
 .main {
     height: 100vh;
+    height: -webkit-fill-available;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
