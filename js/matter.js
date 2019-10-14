@@ -1,4 +1,4 @@
-let canvas = document.getElementById("matter-canvas");
+const canvas = document.getElementById("matter-canvas");
 let width = canvas.offsetWidth;
 let height = canvas.offsetHeight;
 
@@ -8,11 +8,11 @@ let min_height = height / 15;
 let max_height = height / 10;
 
 
-let colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];
+const colors = ["#4285F4", "#DB4437", "#F4B400", "#0F9D58"];
 let objects = [];
 
 // module aliases
-let Engine = Matter.Engine,
+const Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
     Bodies = Matter.Bodies,
@@ -38,15 +38,15 @@ let render = Render.create({
 });
 
 let mouse = Mouse.create(render.canvas),
-mouseConstraint = MouseConstraint.create(engine, {
-    mouse: mouse,
-    constraint: {
-        stiffness: 0.2,
-        render: {
-            visible: false
+    mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+            stiffness: 0.2,
+            render: {
+                visible: false
+            }
         }
-    }
-});
+    });
 
 //Allow scrollwheel to work
 
@@ -60,10 +60,12 @@ mouse.element.removeEventListener('touchend', mouse.mouseup);
 
 World.add(engine.world, mouseConstraint);
 
+
+
 updateGravity = function () {
     if (!engine)
         return;
-    
+
     var orientation = window.orientation,
         gravity = engine.world.gravity;
 
