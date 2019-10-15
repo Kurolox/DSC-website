@@ -36,6 +36,7 @@ h2 {
 
 p, .form {
     font-family: Roboto, Noto Sans, sans-serif;
+    font-size: 1.1em;
     font-weight: 400;
     color: #757575;
     line-height: 1.7em;
@@ -58,6 +59,7 @@ a {
     font-family: Google Sans, Noto Sans, sans-serif;
     font-weight: 500;
 }
+
 /* General purpose tags */
 
 .flex {
@@ -127,7 +129,6 @@ a {
 }
 
 #contacto {
-    min-height: 95vh;
     height: 100%;
     width: 100%;
 }
@@ -168,6 +169,14 @@ a {
     width: 50%;
 }
 
+.one-column {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    column-gap: 2em;
+    align-items: center;
+}
+
 .two-columns-disp {
     width: 100%;
     display: grid;
@@ -189,6 +198,7 @@ a {
     height: 100%;
     padding: 0;
     text-align: center;
+    font-size: 0.7em;
 }
 
 .nomargin {
@@ -200,6 +210,10 @@ a {
 }
 
 /* Button styling */
+
+.btn {
+    margin: 1em 0;
+}
 
 .btn:link, .btn:visited {
     text-decoration: none;
@@ -224,7 +238,8 @@ a {
 }
 
 .btn:active {
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2) transform:translateY(-1px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
 }
 
 .btn-bottom-animation-1 {
