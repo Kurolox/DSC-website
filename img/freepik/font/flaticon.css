@@ -1,0 +1,21 @@
+.flaticon-message:before {
+	content: "\e001";
+}
+.flaticon-telegram:before {
+	content: "\e002";
+}
+.flaticon-instagram:before {
+	content: "\e003";
+}
+.flaticon-youtube:before {
+	content: "\e004";
+}
+.flaticon-twitter:before {
+	content: "\e005";
+}
+.flaticon-linkedin:before {
+	content: "\e006";
+}
+.flaticon-meetup:before {
+	content: "\e007";
+}
