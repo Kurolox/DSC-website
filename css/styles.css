@@ -181,7 +181,7 @@ a {
 }
 
 .media-icon {
-    width: 8vw;
+    width: 5vw;
 }
 
 
@@ -362,6 +362,10 @@ a {
 
     .desc-text {
         display: none;
+    }
+
+    .media-icon {
+        width: 10vw;
     }
 
     img {
