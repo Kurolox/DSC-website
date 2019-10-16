@@ -30,7 +30,7 @@ h1 {
 h2 {
     font-family: Google Sans, Noto Sans, sans-serif;
     font-weight: 500;
-    font-size: 2.5em;
+    font-size: 1.7em;
     color: #757575;
 }
 
@@ -71,6 +71,10 @@ a {
     justify-content: space-around;
 }
 
+.flex-centering {
+    justify-content: center;
+    align-items: center;
+}
 /* Main view tags */
 
 .main {
@@ -159,6 +163,14 @@ a {
     column-gap: 10%;
 }
 
+.media{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -168,6 +180,11 @@ a {
 .column-icon {
     width: 50%;
 }
+
+.media-icon {
+    width: 8vw;
+}
+
 
 .one-column {
     width: 100%;
@@ -342,5 +359,13 @@ a {
     .main-text {
         flex-direction: column;
         font-size: 10vw;
+    }
+
+    .desc-text {
+        display: none;
+    }
+
+    img {
+        border-radius: 0;
     }
 }

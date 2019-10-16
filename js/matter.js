@@ -89,10 +89,10 @@ window.addEventListener('deviceorientation', updateGravity, true);
 render.mouse = mouse;
 
 //walls
-objects.push(Bodies.rectangle(width / 2, height + 100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent"} }));
-objects.push(Bodies.rectangle(width / 2, -100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent"} }));
-objects.push(Bodies.rectangle(-100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent"} }));
-objects.push(Bodies.rectangle(width + 100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent"} }));
+objects.push(Bodies.rectangle(width / 2, height + 100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent" } }));
+objects.push(Bodies.rectangle(width / 2, -100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent" } }));
+objects.push(Bodies.rectangle(-100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent" } }));
+objects.push(Bodies.rectangle(width + 100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent" } }));
 
 
 for (i = 0; i < randomInt(4, 9); i++) {
