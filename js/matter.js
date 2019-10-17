@@ -70,11 +70,7 @@ Events.on(mouseConstraint, "mousemove", function (event) {
     }
     if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
         previousPoint = 0;
-        console.log("Should scroll now");
-        // Hack to get around unknown race condition
-        while (!document.pageYOffset){
-            document.getElementById("quienes-somos").scrollIntoView();
-        }
+        setTimeout(function () { document.getElementById("quienes-somos").scrollIntoView(); }, 0);
 
     }
 });
