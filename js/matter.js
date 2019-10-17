@@ -69,8 +69,9 @@ Events.on(mouseConstraint, "mousemove", function (event) {
         return;
     }
     if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
-        document.getElementById("quienes-somos").scrollIntoView();
         previousPoint = 0;
+        console.log("Should scroll now");
+        document.getElementById("quienes-somos").scrollIntoView();
     }
 });
 // keep the mouse in sync with rendering
