@@ -66,10 +66,10 @@ Events.on(mouseConstraint, "mousedown", function (event) {
 
 Events.on(mouseConstraint, "mousemove", function (event) {
     if (!previousPoint){
-        return
+        return;
     }
     if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
-        document.getElementById("quienes-somos").scrollIntoView();
+        window.scrollTo(0,window.innerHeight);
         previousPoint = 0;
     }
 });
@@ -80,7 +80,7 @@ render.mouse = mouse;
 objects.push(Bodies.rectangle(width / 2, height + 100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent" } }));
 objects.push(Bodies.rectangle(width / 2, -100, width * 1.5, 200, { isStatic: true, render: { fillStyle: "transparent" } }));
 objects.push(Bodies.rectangle(-100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent" } }));
-objects.push(Bodies.rectangle(width + 100, height / 2, 200, height * 1.5, { isStatic: true, render: { fillStyle: "transparent" } }));
+objects.push(Bodies.rectangle(width + 1000, height / 2, 2000, height * 1.5, { isStatic: true, render: { fillStyle: "transparent" } }));
 
 
 for (i = 0; i < randomInt(4, 9); i++) {
