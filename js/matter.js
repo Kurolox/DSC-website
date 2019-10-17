@@ -18,6 +18,7 @@ const Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Vertices = Matter.Vertices,
     Mouse = Matter.Mouse,
+    Events = Matter.Events,
     MouseConstraint = Matter.MouseConstraint;
 
 
@@ -53,38 +54,16 @@ let mouse = Mouse.create(render.canvas),
 mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
 mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
-//Allow mobile scrolling
-mouse.element.removeEventListener('touchmove', mouse.mousemove);
-mouse.element.removeEventListener('touchstart', mouse.mousedown);
-mouse.element.removeEventListener('touchend', mouse.mouseup);
-
 World.add(engine.world, mouseConstraint);
 
-
-
-updateGravity = function () {
-    if (!engine)
-        return;
-
-    var orientation = window.orientation,
-        gravity = engine.world.gravity;
-
-    if (orientation === 0) {
-        gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
-        gravity.y = Common.clamp(event.beta, -90, 90) / 90;
-    } else if (orientation === 180) {
-        gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
-        gravity.y = Common.clamp(-event.beta, -90, 90) / 90;
-    } else if (orientation === 90) {
-        gravity.x = Common.clamp(event.beta, -90, 90) / 90;
-        gravity.y = Common.clamp(-event.gamma, -90, 90) / 90;
-    } else if (orientation === -90) {
-        gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
-        gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
+//Scroll website when not touching any object
+Events.on(mouseConstraint, "mousemove", function (event) {
+    if (!event.mouse.button && !mouseConstraint.body ) {
+        let diff = event.mouse.mousedownPosition.y - event.mouse.absolute.y;
+        window.scrollBy(0, diff);
     }
-};
 
-window.addEventListener('deviceorientation', updateGravity, true);
+});
 // keep the mouse in sync with rendering
 render.mouse = mouse;
 
