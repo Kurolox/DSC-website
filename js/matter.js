@@ -57,12 +57,21 @@ mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 World.add(engine.world, mouseConstraint);
 
 //Scroll website when not touching any object
-Events.on(mouseConstraint, "mousemove", function (event) {
-    if (!event.mouse.button && !mouseConstraint.body ) {
-        let diff = event.mouse.mousedownPosition.y - event.mouse.absolute.y;
-        window.scrollBy(0, diff);
+let previousPoint = 0;
+Events.on(mouseConstraint, "mousedown", function (event) {
+    if (!event.mouse.button && !mouseConstraint.body) {
+        previousPoint = event.mouse.mousedownPosition.y;
     }
+});
 
+Events.on(mouseConstraint, "mousemove", function (event) {
+    if (!previousPoint){
+        return
+    }
+    if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
+        document.getElementById("quienes-somos").scrollIntoView();
+        previousPoint = 0;
+    }
 });
 // keep the mouse in sync with rendering
 render.mouse = mouse;
