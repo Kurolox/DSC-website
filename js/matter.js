@@ -69,7 +69,7 @@ Events.on(mouseConstraint, "mousemove", function (event) {
         return;
     }
     if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
-        setTimeout(function () { document.getElementById("quienes-somos").scrollIntoView(); }, 0);
+        setTimeout(function () { document.getElementById("quienes-somos").scrollIntoView(); }, 1000);
         previousPoint = 0;
     }
 });
