@@ -65,11 +65,11 @@ Events.on(mouseConstraint, "mousedown", function (event) {
 });
 
 Events.on(mouseConstraint, "mousemove", function (event) {
-    if (!previousPoint) {
+    if (!previousPoint){
         return;
     }
     if (previousPoint - event.mouse.position.y > window.innerHeight / 8) {
-        setTimeout(function () { document.getElementById("quienes-somos").scrollIntoView(); }, 1000);
+        document.getElementById("quienes-somos").scrollIntoView();
         previousPoint = 0;
     }
 });
