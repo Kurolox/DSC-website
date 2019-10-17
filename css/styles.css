@@ -246,10 +246,18 @@ a {
     row-gap: 3vh;
 }
 
+/* Siema carousel */
+
+.carousel-image {
+    height: 70vh;
+    margin: 0 2em;
+    border: 2px solid #757575;
+}
+
 /* Button styling */
 
 .btn {
-    margin: 1em 0;
+    margin: 1em;
 }
 
 .btn:link, .btn:visited {
@@ -372,6 +380,13 @@ a {
     }
     .form {
         display: none;
+    }
+    .mobile-vertical {
+        flex-direction: column;
+    }
+    .carousel-image {
+        height: 40vh;
+        border: none;
     }
 }
 
