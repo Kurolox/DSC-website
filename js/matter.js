@@ -57,9 +57,9 @@ mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 World.add(engine.world, mouseConstraint);
 
 // Disable touch event blocking
-mouse.element.removeEventListener("touchstart", mouse.mouseclick);
-mouse.element.removeEventListener("touchend", mouse.mouseclick);
-mouse.element.removeEventListener("touchmove", mouse.mouseclick);
+mouse.element.removeEventListener('touchmove', mouse.mousemove);
+mouse.element.removeEventListener('touchstart', mouse.mousedown);
+mouse.element.removeEventListener('touchend', mouse.mouseup);
 
 /*
 //Scroll website when not touching any object
